@@ -1,8 +1,7 @@
 const axios = require("axios")
-const { baseURL } = require('./config.json')
 
 const service = axios.create({
-  baseURL: baseURL,
+  baseURL: 'http://167.71.35.51:3000/api',
   timeout: 5000
 });
 
