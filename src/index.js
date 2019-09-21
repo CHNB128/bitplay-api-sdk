@@ -1,5 +1,3 @@
-const service = require('./service')
-
 module.exports = {
   info: require('./endpoints/info'),
   auth: require('./endpoints/auth'),
