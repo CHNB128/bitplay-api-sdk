@@ -27,11 +27,11 @@ module.exports = {
       method: "delete"
     });
   },
-  update: ({ id, title, info_hash }) => {
+  update: (id, { title, date }) => {
     return request({
       url: `/videos/${id}`,
       method: "put",
-      data: { title, info_hash }
+      data: { title, date }
     });
   }
 };
