@@ -1,7 +1,8 @@
-const axios = require("axios")
+const axios = require('axios')
+const config = require('./config.json')
 
 const service = axios.create({
-  baseURL: 'http://167.71.35.51:3000/api'
+  baseURL: `http://${config.api.host}:${config.api.port}/api`
 });
 
 service.interceptors.response.use(
