@@ -1,16 +1,16 @@
 const request = require("../service")
 
-const batches = {
-  list: (seriesId, { offset, limit }) => {
+const chapters = {
+  list: (seriesId, seasonId, { offset, limit }) => {
     return request({
-      url: `/series/${seriesId}/batches`,
+      url: `/series/${seriesId}/seasons/${seasonId}`,
       method: "get",
       params: { offset, limit }
     });
   },
-  get: (seriesId, { batchesId }) => {
+  get: (seriesId, seasonId, chapterId) => {
     return request({
-      url: `/series/${seriesId}/batches/${batchesId}`,
+      url: `/series/${seriesId}/seasons/${seasonId}/chapters/${chapterId}`,
       method: "get"
     });
   },
@@ -28,28 +28,60 @@ const batches = {
       }
     });
   },
-  delete: (seriesId, { batchesId }) => {
+  delete: (seriesId, seasonId, chapterId) => {
     return request({
-      url: `/series/${seriesId}/batches/${batchesId}`,
+      url: `/series/${seriesId}/seasons/${seasonId}/chapters/${chapterId}`,
       method: "delete"
     });
   },
-  update: (seriesId, { translationId, title, seasonNumber, batchNumber }) => {
+  update: (seriesId, seasonId, chapterId, { translationId, title, date, number }) => {
     return request({
-      url: `/series/${seriesId}/batches/${batchesId}`,
+      url: `/series/${seriesId}/seasons/${seasonId}/chapters/${chapterId}`,
       method: "put",
-      data: {
-        translation_id: translationId,
-        title,
-        season_number: seasonNumber,
-        batch_number: batchNumber,
-      }
+      data: { translation_id: translationId, title, date, number }
     });
   }
 }
 
+const seasons = {
+  list: (seriesId, { offset, limit }) => {
+    return request({
+      url: `/series/${seriesId}/seasons`,
+      method: "get",
+      params: { offset, limit }
+    });
+  },
+  get: (seriesId, seasonId) => {
+    return request({
+      url: `/series/${seriesId}/seasons/${seasonId}`,
+      method: "get"
+    });
+  },
+  create: (seriesId, { title, date, number }) => {
+    return request({
+      url: `/series/${seriesId}/seasons`,
+      method: 'post',
+      data: { title, date, number }
+    })
+  },
+  delete: (seriesId, seasonId) => {
+    return request({
+      url: `/series/${seriesId}/seasons/${seasonId}`,
+      method: "delete"
+    });
+  },
+  update: (seriesId, { title, date, number }) => {
+    return request({
+      url: `series/${seriesId}/seasons/${seasonId}`,
+      method: 'put',
+      data: { title, date, number }
+    })
+  }
+}
+
 module.exports = {
-  batches,
+  chapters,
+  seasons,
   list: ({ offset, limit }) => {
     return request({
       url: "/series",
