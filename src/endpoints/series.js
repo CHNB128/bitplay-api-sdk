@@ -70,7 +70,7 @@ const seasons = {
       method: "delete"
     });
   },
-  update: (seriesId, { title, date, number }) => {
+  update: (seriesId, seasonId, { title, date, number }) => {
     return request({
       url: `series/${seriesId}/seasons/${seasonId}`,
       method: 'put',
