@@ -3,7 +3,7 @@ const request = require("../service")
 const chapters = {
   list: (seriesId, seasonId, { offset, limit }) => {
     return request({
-      url: `/series/${seriesId}/seasons/${seasonId}`,
+      url: `/series/${seriesId}/seasons/${seasonId}/chapters`,
       method: "get",
       params: { offset, limit }
     });
@@ -14,9 +14,9 @@ const chapters = {
       method: "get"
     });
   },
-  create: (seriesId, { translationId, title, seasonNumber, batchNumber, infoHash, servers }) => {
+  create: (seriesId, seasonId, { translationId, title, seasonNumber, batchNumber, infoHash, servers }) => {
     return request({
-      url: `/series/${seriesId}/batches`,
+      url: `/series/${seriesId}/seasons/${seasonId}/chapters`,
       method: "post",
       data: {
         translation_id: translationId,
