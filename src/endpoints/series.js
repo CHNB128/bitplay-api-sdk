@@ -57,11 +57,17 @@ const seasons = {
       method: "get"
     });
   },
-  create: (seriesId, { title, date, number }) => {
+  create: (seriesId, { title, date, number, poster }) => {
+    const form = new FormDate();
+    form.set("title", title)
+    form.set("date", date)
+    form.set("number", number)
+    form.append("poster", poster)
     return request({
       url: `/series/${seriesId}/seasons`,
       method: 'post',
-      data: { title, date, number }
+      data: form,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
     })
   },
   delete: (seriesId, seasonId) => {
