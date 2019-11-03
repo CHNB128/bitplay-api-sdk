@@ -58,7 +58,7 @@ const seasons = {
     });
   },
   create: (seriesId, { title, date, number, poster }) => {
-    const form = new FormDate();
+    const form = new FormData();
     form.set("title", title)
     form.set("date", date)
     form.set("number", number)
